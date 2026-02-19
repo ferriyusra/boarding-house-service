@@ -1,0 +1,15 @@
+{
+  "rate_limit_time": 60,
+  "rate_limit_max": 100,
+  "timeout": 5000,
+  "max_redirects": 5,
+  "db_dialect": "postgres",
+  "db_host": "aws-1-ap-southeast-1.pooler.supabase.com",
+  "db_username": "postgres.ofsuykaiyoahmvdiiawy",
+  "db_password": "h5BhjaZVgSoEZwsd",
+  "db_name": "postgres",
+  "db_port": 5432,
+  "db_connection_timeout": 3000,
+  "db_acquire_timeout": 3000,
+  "db_pool_size": 10
+}
