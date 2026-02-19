@@ -10,7 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { City } from './city.entity';
-import { Type } from './types.entity';
+import { Type } from './type.entity';
 import { BoardingHouseRule } from './boarding-house-rule.entity';
 import { BoardingHouseFacility as BoardingHouseImage } from './boarding-house-facility.entity';
 import { BoardingHouseRoom } from './boarding-house-room.entity';

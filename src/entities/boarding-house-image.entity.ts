@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { City } from './city.entity';
-import { Type } from './types.entity';
+import { Type } from './type.entity';
 import { BoardingHouse } from './boarding-house.entity';
 
 @Entity('boarding_houses_images')
