@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { City } from 'src/entities/city.entity';
@@ -11,7 +12,7 @@ export class CityRepository {
     private readonly repository: Repository<City>,
   ) { }
 
-  public async findAllWithpagination(params: IQueryParams): Promise<{
+  public async findAllWithPagination(params: IQueryParams): Promise<{
     data: City[];
     total: number;
   }> {
@@ -26,7 +27,7 @@ export class CityRepository {
       },
       skip: offset,
       take: params.limit,
-      order: { name: 'ASC' },
+      order: { id: 'DESC' },
     });
     return { data, total };
   }
@@ -40,11 +41,11 @@ export class CityRepository {
         photo: true,
         numberOfUnit: true,
       },
-      order: { name: 'ASC' },
+      order: { id: 'DESC' },
     });
   }
 
-  public async findOneByUuid(uuid: string): Promise<City | null> {
+  public async findByUuid(uuid: string): Promise<City | null> {
     return this.repository.findOne({
       where: { uuid: uuid },
     });

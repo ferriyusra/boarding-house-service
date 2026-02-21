@@ -12,3 +12,9 @@ export interface IQueryParams {
   column?: string;
   sort?: 'ASC' | 'DESC';
 }
+
+export interface ISearchParams {
+  search: string;
+  city_uuid?: string;
+  type_uuid: string;
+}
