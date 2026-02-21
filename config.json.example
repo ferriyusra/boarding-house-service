@@ -11,5 +11,8 @@
   "db_port": 5432,
   "db_connection_timeout": 3000,
   "db_acquire_timeout": 3000,
-  "db_pool_size": 10
+  "db_pool_size": 10,
+  "client_url": {
+    "auth_service": "http://localhost:3001"
+  }
 }

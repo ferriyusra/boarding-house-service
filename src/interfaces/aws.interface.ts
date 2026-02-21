@@ -16,6 +16,11 @@ export interface IAWSConfig {
   db_acquire_timeout: number;
   db_max_retry: number;
   db_pool_size: number;
+  clientUrl: IClientUrl;
+}
+
+interface IClientUrl {
+  auth_service: string;
 }
 
 export interface IAWSS3Config {
