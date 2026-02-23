@@ -11,7 +11,7 @@ import {
   RESPONSE_OPTS,
   ResponseOpts,
 } from '../decorators/response.decorator';
-import { HTTP_STATUS } from 'src/constants/http-status.constant';
+import { HTTP_STATUS } from '../../constants/http-status.constant';
 
 type ResponseFormat<T> = {
   status: 'success';
@@ -48,6 +48,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<
   T,
   ResponseFormat<T>
 > {
+  // eslint-disable-next-line prettier/prettier
   constructor(private readonly reflector: Reflector) { }
 
   private camelToSnake(obj: any, keyName?: string): any {

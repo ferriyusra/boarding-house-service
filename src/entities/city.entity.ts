@@ -30,7 +30,7 @@ export class City {
     nullable: true,
     length: 255,
   })
-  photo: number;
+  photo: string;
 
   @CreateDateColumn({
     name: 'created_at',

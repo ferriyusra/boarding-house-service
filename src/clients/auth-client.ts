@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import { IUser } from 'src/interfaces/user.interface';
-import { getSecretValue } from 'src/config/configuration.config';
+import { IUser } from '../interfaces/user.interface';
+import { getSecretValue } from '../config/configuration.config';
 import { firstValueFrom } from 'rxjs';
 import { AxiosResponse } from 'axios';
 
@@ -13,7 +13,8 @@ export class AuthClient {
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
-  ) {}
+    // eslint-disable-next-line prettier/prettier
+  ) { }
 
   public async getUserInfo(token: string, uuid: string): Promise<IUser> {
     try {

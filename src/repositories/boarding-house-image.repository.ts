@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BoardingHouseImage } from 'src/entities/boarding-house-image.entity';
-import { BoardingHouse } from 'src/entities/boarding-house.entity';
+import { BoardingHouseImage } from '../entities/boarding-house-image.entity';
+import { BoardingHouse } from '../entities/boarding-house.entity';
 import { DeepPartial, Repository, UpdateResult } from 'typeorm';
 
 @Injectable()

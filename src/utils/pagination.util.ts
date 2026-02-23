@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IPagination } from 'src/interfaces/database.interface';
+import { IPagination } from '../interfaces/database.interface';
 
 @Injectable()
 export class PaginationUtil {

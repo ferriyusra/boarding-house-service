@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BoardingHouse } from 'src/entities/boarding-house.entity';
-import { IQueryParams, ISearchParams } from 'src/interfaces/database.interface';
+import { BoardingHouse } from '../entities/boarding-house.entity';
+import { IQueryParams, ISearchParams } from '../interfaces/database.interface';
 import {
   DeepPartial,
   FindOptionsWhere,
@@ -60,7 +60,7 @@ export class BoardingHouseRepository {
     return { data, total };
   }
 
-  public async findAllWithoutpagination(): Promise<BoardingHouse[]> {
+  public async findAllWithoutPagination(): Promise<BoardingHouse[]> {
     return await this.repository.find({
       relations: {
         boardingHouseImages: true,

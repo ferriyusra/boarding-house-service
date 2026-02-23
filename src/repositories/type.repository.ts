@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Type } from 'src/entities/type.entity';
-import { IQueryParams } from 'src/interfaces/database.interface';
+import { Type } from '../entities/type.entity';
+import { IQueryParams } from '../interfaces/database.interface';
 import { DeepPartial, Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
@@ -32,7 +32,7 @@ export class TypeRepository {
     return { data, total };
   }
 
-  public async findAllWithoutpagination(): Promise<Type[]> {
+  public async findAllWithoutPagination(): Promise<Type[]> {
     return await this.repository.find({
       select: {
         id: true,

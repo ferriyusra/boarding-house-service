@@ -1,7 +1,7 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { getSecretValue } from 'src/config/configuration.config';
+import { getSecretValue } from '../config/configuration.config';
 import { AuthClient } from './auth-client';
 
 @Module({
@@ -18,4 +18,5 @@ import { AuthClient } from './auth-client';
   providers: [AuthClient],
   exports: [AuthClient],
 })
-export class ClientModule {}
+// eslint-disable-next-line prettier/prettier
+export class ClientModule { }

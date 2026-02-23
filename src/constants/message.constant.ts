@@ -7,6 +7,6 @@ export const messageConstant = {
   IMAGE_FACILITY_REQUIRED: 'At least one image facility is required',
   BOARDING_HOUSE_RULE_NOT_FOUND: 'Boarding house rule not found',
   BOARDING_HOUSE_TESTIMONY_NOT_FOUND: 'Boarding house testimony not found',
-  CITI_NOT_FOUND: 'City not found',
+  CITY_NOT_FOUND: 'City not found',
   TYPE_NOT_FOUND: 'Type not found',
 };

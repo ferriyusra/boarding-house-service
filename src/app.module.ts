@@ -10,6 +10,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import path from 'path';
 import { getSecretValue } from './config/configuration.config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { CityModule } from './modules/city/city.module';
+import { TypeModule } from './modules/type/type.module';
 
 @Module({
   imports: [
@@ -46,6 +48,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
         poolSize: getSecretValue(configService).db_pool_size,
       }),
     }),
+    CityModule,
+    TypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

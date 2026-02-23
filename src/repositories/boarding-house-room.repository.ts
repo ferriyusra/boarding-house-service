@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BoardingHouseRoom, RoomStatus } from 'src/entities/boarding-house-room.entity';
-import { BoardingHouse } from 'src/entities/boarding-house.entity';
-import { IQueryParams, ISearchParams } from 'src/interfaces/database.interface';
+import { BoardingHouseRoom, RoomStatus } from '../entities/boarding-house-room.entity';
+import { BoardingHouse } from '../entities/boarding-house.entity';
+import { IQueryParams, ISearchParams } from '../interfaces/database.interface';
 import {
   DeepPartial,
   FindOptionsWhere,
@@ -88,7 +88,7 @@ export class BoardingHouseRoomRepository {
     return { data, total };
   }
 
-  public async findAllWithoutpagination(): Promise<BoardingHouseRoom[]> {
+  public async findAllWithoutPagination(): Promise<BoardingHouseRoom[]> {
     return await this.repository.find({
       select: {
         id: true,
@@ -158,8 +158,9 @@ export class BoardingHouseRoomRepository {
 
   public async update(
     uuid: string,
-    data: DeepPartial<BoardingHouse>,
+    data: DeepPartial<BoardingHouseRoom>,
   ): Promise<UpdateResult> {
+    data.code = await this.generateRoomCode();
     return this.repository.update({ uuid }, data);
   }
 

@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BoardingHouseTestimony } from 'src/entities/boarding-house-testimony.entity';
-import { BoardingHouse } from 'src/entities/boarding-house.entity';
-import { IQueryParams } from 'src/interfaces/database.interface';
+import { BoardingHouseTestimony } from '../entities/boarding-house-testimony.entity';
+import { BoardingHouse } from '../entities/boarding-house.entity';
+import { IQueryParams } from '../interfaces/database.interface';
 import { DeepPartial, Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
