@@ -12,6 +12,8 @@ import { getSecretValue } from './config/configuration.config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { CityModule } from './modules/city/city.module';
 import { TypeModule } from './modules/type/type.module';
+import { RuleModule } from './modules/rule/rule.module';
+import { FacilityModule } from './modules/facility/facility.module';
 
 @Module({
   imports: [
@@ -50,6 +52,8 @@ import { TypeModule } from './modules/type/type.module';
     }),
     CityModule,
     TypeModule,
+    RuleModule,
+    FacilityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

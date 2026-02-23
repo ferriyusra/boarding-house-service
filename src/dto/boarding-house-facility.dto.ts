@@ -7,7 +7,7 @@ export class BoardingHouseFacilityDTO {
 
   @IsString()
   @IsNotEmpty()
-  rule: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()

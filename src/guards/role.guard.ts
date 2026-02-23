@@ -6,12 +6,13 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import * as jwt from 'jsonwebtoken';
-import { ROLES_KEY } from '../../common/decorators/role.decorator';
-import { authConstant } from '../../constants/auth.constant';
-import { IJwtPayload } from '../../interfaces/jwt.interface';
+import { ROLES_KEY } from '../common/decorators/role.decorator';
+import { authConstant } from '../constants/auth.constant';
+import { IJwtPayload } from '../interfaces/jwt.interface';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
+  // eslint-disable-next-line prettier/prettier
   constructor(private reflector: Reflector) { }
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest();

@@ -32,7 +32,7 @@ export class BoardingHouseFacility {
     type: 'text',
     nullable: true,
   })
-  description: string;
+  tagline: string;
 
   @Column()
   image: string;
