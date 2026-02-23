@@ -8,9 +8,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { RuleService } from './rule.service';
-import { Roles } from 'src/common/decorators/role.decorator';
-import { RoleGuard } from 'src/guards/role.guard';
-import { BoardingHouseRuleDTO } from 'src/dto/boarding-house-rule.dto';
+import { Roles } from '../../common/decorators/role.decorator';
+import { RoleGuard } from '../../guards/role.guard';
+import { BoardingHouseRuleDTO } from '../../dto/boarding-house-rule.dto';
 
 @Controller('boarding-house-rules')
 export class RuleController {

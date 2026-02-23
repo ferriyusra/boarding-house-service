@@ -12,4 +12,5 @@ export const messageConstant = {
   TYPE_NOT_FOUND: 'Type not found',
   RULE_NOT_FOUND: 'Rule not found',
   FACILITY_NOT_FOUND: 'Facility not found',
+  TESTIMONY_NOT_FOUND: 'Testimony not found',
 };

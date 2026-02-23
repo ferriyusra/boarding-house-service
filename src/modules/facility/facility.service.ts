@@ -5,13 +5,12 @@ import {
   Logger,
 } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { authConstant } from 'src/constants/auth.constant';
-import { messageConstant } from 'src/constants/message.constant';
-import { BoardingHouseFacilityDTO } from 'src/dto/boarding-house-facility.dto';
-import { BoardingHouseRuleDTO } from 'src/dto/boarding-house-rule.dto';
-import { BoardingHouseFacilityRepository } from 'src/repositories/boarding-house-facility.repository';
-import { BoardingHouseRepository } from 'src/repositories/boarding-house.repository';
-import { AwsUtil } from 'src/utils/aws.utils';
+import { authConstant } from '../../constants/auth.constant';
+import { messageConstant } from '../../constants/message.constant';
+import { BoardingHouseFacilityDTO } from '../../dto/boarding-house-facility.dto';
+import { BoardingHouseFacilityRepository } from '../../repositories/boarding-house-facility.repository';
+import { BoardingHouseRepository } from '../../repositories/boarding-house.repository';
+import { AwsUtil } from '../../utils/aws.utils';
 
 @Injectable()
 export class FacilityService {

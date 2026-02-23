@@ -4,11 +4,11 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import { authConstant } from 'src/constants/auth.constant';
-import { messageConstant } from 'src/constants/message.constant';
-import { BoardingHouseRuleDTO } from 'src/dto/boarding-house-rule.dto';
-import { BoardingHouseRuleRepository } from 'src/repositories/boarding-house-rule.repository';
-import { BoardingHouseRepository } from 'src/repositories/boarding-house.repository';
+import { authConstant } from '../../constants/auth.constant';
+import { messageConstant } from '../../constants/message.constant';
+import { BoardingHouseRuleDTO } from '../../dto/boarding-house-rule.dto';
+import { BoardingHouseRuleRepository } from '../../repositories/boarding-house-rule.repository';
+import { BoardingHouseRepository } from '../../repositories/boarding-house.repository';
 
 @Injectable()
 export class RuleService {

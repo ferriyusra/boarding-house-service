@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { RuleService } from './rule.service';
 import { RuleController } from './rule.controller';
-import { RepositoryModule } from 'src/repositories/repository.module';
+import { RepositoryModule } from '../../repositories/repository.module';
 
 @Module({
   imports: [RepositoryModule],

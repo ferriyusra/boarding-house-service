@@ -14,6 +14,7 @@ import { CityModule } from './modules/city/city.module';
 import { TypeModule } from './modules/type/type.module';
 import { RuleModule } from './modules/rule/rule.module';
 import { FacilityModule } from './modules/facility/facility.module';
+import { TestimonyModule } from './modules/testimony/testimony.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { FacilityModule } from './modules/facility/facility.module';
     TypeModule,
     RuleModule,
     FacilityModule,
+    TestimonyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

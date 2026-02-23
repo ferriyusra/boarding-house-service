@@ -10,10 +10,10 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FacilityService } from './facility.service';
-import { Roles } from 'src/common/decorators/role.decorator';
-import { RoleGuard } from 'src/guards/role.guard';
+import { Roles } from '../../common/decorators/role.decorator';
+import { RoleGuard } from '../../guards/role.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { BoardingHouseFacilityDTO } from 'src/dto/boarding-house-facility.dto';
+import { BoardingHouseFacilityDTO } from '../../dto/boarding-house-facility.dto';
 
 @Controller('boarding-house-facilities')
 export class FacilityController {
