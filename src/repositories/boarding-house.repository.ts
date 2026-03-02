@@ -113,8 +113,8 @@ export class BoardingHouseRepository {
   }
 
   public async findByTypeOrCity(
-    typeUuid?: string,
-    cityUuid?: string,
+    typeUuid?: string | null,
+    cityUuid?: string | null,
   ): Promise<BoardingHouse[]> {
     let where: FindOptionsWhere<BoardingHouse> | undefined;
     if (typeUuid) {

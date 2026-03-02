@@ -15,6 +15,8 @@ import { TypeModule } from './modules/type/type.module';
 import { RuleModule } from './modules/rule/rule.module';
 import { FacilityModule } from './modules/facility/facility.module';
 import { TestimonyModule } from './modules/testimony/testimony.module';
+import { BoardingHouseModule } from './modules/boarding-house/boarding-house.module';
+import { RoomModule } from './modules/room/room.module';
 
 @Module({
   imports: [
@@ -56,6 +58,8 @@ import { TestimonyModule } from './modules/testimony/testimony.module';
     RuleModule,
     FacilityModule,
     TestimonyModule,
+    BoardingHouseModule,
+    RoomModule,
   ],
   controllers: [AppController],
   providers: [AppService],

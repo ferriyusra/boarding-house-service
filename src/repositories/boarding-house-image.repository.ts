@@ -12,8 +12,8 @@ export class BoardingHouseImageRepository {
     private readonly repository: Repository<BoardingHouseImage>,
   ) { }
 
-  public async findOneByBoardingHouse(uuid: string): Promise<BoardingHouseImage[]> {
-    return await this.repository.find({
+  public async findOneByBoardingHouse(uuid: string): Promise<BoardingHouseImage | null> {
+    return await this.repository.findOne({
       where: {
         boardingHouse: {
           uuid: uuid,
@@ -25,7 +25,7 @@ export class BoardingHouseImageRepository {
     });
   }
 
-  public async create(data: DeepPartial<BoardingHouseImage>): Promise<BoardingHouseImage> {
+  public async create(data: DeepPartial<BoardingHouseImage>[]): Promise<BoardingHouseImage[]> {
     const boardingHouseImage = this.repository.create(data);
     return this.repository.save(boardingHouseImage);
   }

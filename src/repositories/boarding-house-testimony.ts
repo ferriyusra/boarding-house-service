@@ -64,7 +64,7 @@ export class BoardingHouseTestimonyRepository {
     return this.repository.save(boardingHouseTestimony);
   }
 
-  public async deleteByBoardingHouse(boardingHouse: BoardingHouse): Promise<UpdateResult> {
+  public async delete(boardingHouse: BoardingHouse): Promise<UpdateResult> {
     return await this.repository.softDelete({ boardingHouse: boardingHouse });
   }
 }

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class BoardingHouseDTO {
   @IsString()
@@ -33,4 +33,7 @@ export class BoardingHouseDTO {
   @IsString()
   @IsNotEmpty()
   contact_phone_number: string;
+
+  @IsOptional()
+  is_popular?: boolean;
 }
