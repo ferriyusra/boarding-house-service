@@ -10,6 +10,9 @@ import type {
   IQueryParams,
   IPagination,
 } from 'src/interfaces/database.interface';
+import { randomUUID } from 'crypto';
+import { BoardingHouseRoomDTO } from 'src/dto/boarding-house-room.dto';
+import { RoomStatus } from 'src/entities/boarding-house-room.entity';
 import { BoardingHouseRoomRepository } from 'src/repositories/boarding-house-room.repository';
 import { BoardingHouseRepository } from 'src/repositories/boarding-house.repository';
 import { AwsUtil } from 'src/utils/aws.utils';
@@ -24,7 +27,8 @@ export class RoomService {
     private readonly boardingHouseRepository: BoardingHouseRepository,
     private readonly paginationUtil: PaginationUtil,
     private readonly awsUtil: AwsUtil,
-  ) { }
+  ) {}
+
   public async getAllWithPagination(params: IQueryParams): Promise<any> {
     try {
       const { data, total } =
@@ -61,16 +65,138 @@ export class RoomService {
         throw new BadRequestException(messageConstant.BOARDING_HOUSE_NOT_FOUND);
       }
 
-      const data = await this.repository.findByBoardingHouseUuid(boardingHouseUuid);
+      const data =
+        await this.repository.findByBoardingHouseUuid(boardingHouseUuid);
       const rooms: any = [];
       for (const room of data) {
         rooms.push({
           uuid: room.uuid,
           room_name: room.name,
           room_size: room.size,
-          room_capacity: 
-        })
+          room_capacity: room.capacity,
+          room_price_per_month: room.pricePerMonth,
+          room_photo: room.photo,
+        });
       }
+
+      return {
+        boarding_house_photo: boardingHouse.boardingHouseImages[0].image,
+        boarding_house_name: boardingHouse.name,
+        city: boardingHouse.city.name,
+        type: boardingHouse.type.name,
+        rooms,
+      };
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException(authConstant.SOMETHING_WENT_WRONG);
+    }
+  }
+
+  public async countAll(): Promise<number> {
+    try {
+      return this.repository.count();
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException(authConstant.SOMETHING_WENT_WRONG);
+    }
+  }
+
+  public async getLastFive(): Promise<any> {
+    try {
+      return await this.repository.findLastFiveRoom();
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException(authConstant.SOMETHING_WENT_WRONG);
+    }
+  }
+
+  public async getByUuid(uuid: string): Promise<any> {
+    try {
+      const data = await this.repository.findOne(uuid);
+      if (!data) {
+        throw new BadRequestException(
+          messageConstant.BOARDING_HOUSE_ROOM_NOT_FOUND,
+        );
+      }
+      return data;
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException(authConstant.SOMETHING_WENT_WRONG);
+    }
+  }
+
+  public async upsert(
+    data: BoardingHouseRoomDTO,
+    file: Express.Multer.File,
+    uuid?: string,
+  ) {
+    try {
+      const isUpdate = Boolean(uuid);
+      if (!file && !isUpdate) {
+        throw new BadRequestException(messageConstant.IMAGE_ROOM_REQUIRED);
+      }
+
+      const boardingHouse = await this.boardingHouseRepository.findByUuid(
+        data.boarding_house_uuid,
+      );
+      if (!boardingHouse) {
+        throw new BadRequestException(messageConstant.BOARDING_HOUSE_NOT_FOUND);
+      }
+
+      let photo: string | null = '';
+      if (file) {
+        const uploadImage = await this.awsUtil.uploadFileToS3({
+          key: `rooms/${Date.now()}-${file.originalname}`,
+          body: file.buffer,
+          contentType: file.mimetype,
+        });
+        photo = uploadImage.url;
+      }
+
+      if (isUpdate) {
+        const room = await this.repository.findOne(uuid!);
+        if (!room) {
+          throw new BadRequestException(
+            messageConstant.BOARDING_HOUSE_ROOM_NOT_FOUND,
+          );
+        }
+        await this.repository.update(uuid!, {
+          name: data.name,
+          size: data.size,
+          capacity: data.capacity,
+          pricePerMonth: data.price_per_month,
+          photo: photo ? photo : room.photo,
+        });
+        return await this.repository.findOne(uuid!);
+      }
+
+      return await this.repository.create({
+        uuid: randomUUID(),
+        name: data.name,
+        size: data.size,
+        capacity: data.capacity,
+        pricePerMonth: data.price_per_month,
+        photo: photo,
+        status: RoomStatus.AVAILABLE,
+        boardingHouse,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException(authConstant.SOMETHING_WENT_WRONG);
+    }
+  }
+
+  public async delete(uuid: string): Promise<any> {
+    try {
+      const city = await this.repository.findOne(uuid);
+      if (!city) {
+        throw new BadRequestException(
+          messageConstant.BOARDING_HOUSE_RULE_NOT_FOUND,
+        );
+      }
+
+      await this.repository.deleteByUuid(uuid);
+      return true;
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException(authConstant.SOMETHING_WENT_WRONG);

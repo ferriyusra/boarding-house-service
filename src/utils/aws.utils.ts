@@ -4,12 +4,14 @@ import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { GetParameterCommand, SSMClient } from '@aws-sdk/client-ssm';
 import { IAWSConfig } from '../interfaces/aws.interface';
 import { awsConstant } from '../constants/aws.constant';
+import { DeleteMessageBatchCommand, DeleteMessageCommand, ReceiveMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 
 @Injectable()
 export class AwsUtil {
   private readonly logger: Logger = new Logger(AwsUtil.name);
   private readonly s3Client: S3Client;
   private readonly ssmClient: SSMClient;
+  private readonly sqsClient: SQSClient;
 
   constructor() {
     const params: any = {
@@ -22,6 +24,7 @@ export class AwsUtil {
 
     this.s3Client = new S3Client(params);
     this.ssmClient = new SSMClient(params);
+    this.sqsClient = new SQSClient(params);
   }
 
   private getUrlS3(key: string): string {
@@ -73,6 +76,38 @@ export class AwsUtil {
         };
       }
       return result;
+    } catch (error) {
+      this.logger.error('Error fetching parameter store values', error);
+      throw error;
+    }
+  }
+
+  public async recieveMessageFromSQS(params?: {
+    maxNumberOfMessage?:number,
+    waitTimeSeconds?: number,
+  }) {
+    try {
+      return await this.sqsClient.send(
+        new ReceiveMessageCommand({
+          QueueUrl: awsConstant.SQS_QUEUE_BOARDING_HOUSE_URL_AWS,
+          MaxNumberOfMessages: params?.maxNumberOfMessage,
+          WaitTimeSeconds: params?.waitTimeSeconds,
+        })
+      );
+    } catch (error) {
+      this.logger.error('Error fetching parameter store values', error);
+      throw error;
+    }
+  }
+
+  public async deleteMEssageFromSQS(receiptHandle: string) {
+    try {
+      return await this.sqsClient.send(
+        new DeleteMessageCommand({
+          QueueUrl: awsConstant.SQS_QUEUE_BOARDING_HOUSE_URL_AWS,
+          ReceiptHandle: receiptHandle,
+        })
+      );
     } catch (error) {
       this.logger.error('Error fetching parameter store values', error);
       throw error;

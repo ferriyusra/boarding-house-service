@@ -17,6 +17,7 @@ import { FacilityModule } from './modules/facility/facility.module';
 import { TestimonyModule } from './modules/testimony/testimony.module';
 import { BoardingHouseModule } from './modules/boarding-house/boarding-house.module';
 import { RoomModule } from './modules/room/room.module';
+import { SqsModule } from './modules/sqs/sqs.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { RoomModule } from './modules/room/room.module';
     TestimonyModule,
     BoardingHouseModule,
     RoomModule,
+    SqsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

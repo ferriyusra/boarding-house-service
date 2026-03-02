@@ -4,4 +4,6 @@ export const awsConstant = {
   REGION_AWS: process.env.AWS_REGION || 'ap-southeast-1',
   BUCKET_NAME_AWS: process.env.BUCKET_NAME_AWS || '',
   PARAMETER_STORE_NAMES: process.env.PARAMETER_STORE_NAMES,
+  SQS_QUEUE_BOARDING_HOUSE_URL_AWS:
+    process.env.SQS_QUEUE_BOARDING_HOUSE_URL_AWS,
 };
